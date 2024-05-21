@@ -1,0 +1,62 @@
+/* src/components/ChatRoom.css */
+.chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+
+  }
+  
+  .card {
+    width: 100%;
+    /* max-width: 600px; */
+    height: 100%;
+  }
+  
+  .messages {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    height: 100%; 
+    overflow-y: auto;
+  }
+  
+  form {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+  .messages-wrapper {
+    height: calc(100% - 50px);
+    overflow: hidden; 
+  }
+  
+  form .form-control {
+    flex: 1;
+  }
+  /* src/components/ChatRoom.css */
+.messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+  }
+  
+  .messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
+  
+
+
+    
