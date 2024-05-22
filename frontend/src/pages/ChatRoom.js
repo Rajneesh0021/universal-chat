@@ -30,15 +30,15 @@ const ChatRoom = () => {
           },
         });
         console.log(response)
-        if(response.statusText==='OK')
+        if(response.statusText==='OK'){
         setMessages(response.data);
-      else{
+        }else{
         toast(response.message)
       }
       } catch (error) {
         console.log(error)
         toast(error.message);
-          localStorage.clear()
+        
 
       }
     };
@@ -82,7 +82,7 @@ const ChatRoom = () => {
       } catch (error) {
         toast(error.message)
         console.error('Error posting message:', error);
-        localStorage.clear()
+        
       }
     }
   };

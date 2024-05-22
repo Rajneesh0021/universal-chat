@@ -15,7 +15,7 @@ const LoginPage = ({ setAuthenticated}) => {
     try {
       const response = await axios.post('https://universal-chat.onrender.com/api/login', { username, password });
       if (response.data.success) {
-      await  toast(response.data.message);
+        toast(response.data.message);
         setAuthenticated(true);
         localStorage.setItem('unichtoken', response.data.token);
         localStorage.setItem('username', username);
@@ -24,7 +24,7 @@ const LoginPage = ({ setAuthenticated}) => {
         toast(response.data.message);
       }
     } catch (err) {
-      toast(err.response.data.message);
+      toast(err.message);
     }
   };
 
