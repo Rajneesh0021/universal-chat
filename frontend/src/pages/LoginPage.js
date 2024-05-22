@@ -17,7 +17,7 @@ const LoginPage = ({ setAuthenticated}) => {
       if (response.data.success) {
       await  toast(response.data.message);
         setAuthenticated(true);
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('unichtoken', response.data.token);
         localStorage.setItem('username', username);
       } else{
         console.log(response.data)

@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('unichtoken');
     if (token) {
       setAuthenticated(true);
     }

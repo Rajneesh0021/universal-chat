@@ -11,7 +11,7 @@ const ChatRoom = () => {
   
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('unichtoken');
   const username = localStorage.getItem('username');
   const messagesEndRef = useRef(null);
 
@@ -21,9 +21,7 @@ const ChatRoom = () => {
 
  
   useEffect(() => {
-    if(!token){
-      window.location.reload()
-    }
+    
     const fetchMessages = async () => {
       try {
         const response = await axios.get('http://localhost:9090/api/messages', {
@@ -32,17 +30,16 @@ const ChatRoom = () => {
           },
         });
         console.log(response)
-        if(response.status===200 || response.status===201)
+        if(response.statusText==='OK')
         setMessages(response.data);
       else{
         toast(response.message)
       }
       } catch (error) {
-        console.log(error.response.data.message)
-        toast(error.response.data.message);
-        if(error.response.data.message==='Failed to authenticate token'){
+        console.log(error)
+        toast(error.message);
           localStorage.clear()
-        }
+
       }
     };
 
@@ -83,7 +80,9 @@ const ChatRoom = () => {
 
         setInput('');
       } catch (error) {
+        toast(error.message)
         console.error('Error posting message:', error);
+        localStorage.clear()
       }
     }
   };
@@ -95,6 +94,7 @@ const ChatRoom = () => {
       <div className="card">
         <div className="card-header bg-black text-white">
           <h5 className="card-title">Universal Chat</h5>
+         
         </div>
         <div className="card-body messages-wrapper">
           <div className="messages mb-3 p-3" style={{ maxHeight: '90%', overflowY: 'auto' }}>

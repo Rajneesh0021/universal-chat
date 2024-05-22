@@ -1,4 +1,3 @@
-const express = require('express');
 const Message = require('../models/Message');
 const router = express.Router();
 
@@ -13,7 +12,7 @@ router.get('/messages', async (req, res) => {
     }));
     res.json(formattedMessages);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch messages' });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -24,7 +23,7 @@ router.post('/messages', async (req, res) => {
     
   res.json([newMessage]);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to post message' });
+    res.status(500).json({ error: error.message });
   }
 });
 
