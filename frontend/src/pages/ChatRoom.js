@@ -24,7 +24,7 @@ const ChatRoom = () => {
     
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:9090/api/messages', {
+        const response = await axios.get('https://universal-chat.onrender.com/api/messages', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -65,7 +65,7 @@ const ChatRoom = () => {
       try {
   
         const response = await axios.post(
-          'http://localhost:9090/api/messages',
+          'https://universal-chat.onrender.com/api/messages',
           { text: input },
           {
             headers: {

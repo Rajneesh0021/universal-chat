@@ -13,7 +13,7 @@ const LoginPage = ({ setAuthenticated}) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:9090/api/login', { username, password });
+      const response = await axios.post('https://universal-chat.onrender.com/api/login', { username, password });
       if (response.data.success) {
       await  toast(response.data.message);
         setAuthenticated(true);
