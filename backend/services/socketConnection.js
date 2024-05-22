@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const socketIo = require('socket.io');
-// const chatRoutes = require('../routes/chat');
-// const { verifyToken } = require('../middleware/auth');
+
 app.use(express.json());
 
 const server = http.createServer(app);
@@ -19,7 +18,7 @@ io.on('connection', (socket) => {
   
   socket.on('message', ({ text, username }) => {
     console.log(text, username);
-    // app.use('/api', verifyToken, chatRoutes);
+ 
     io.emit('message', { text, username });
   });
 
@@ -28,4 +27,4 @@ io.on('connection', (socket) => {
   });
 });
 
-module.exports = { server, app,io };
+module.exports = { server, app, io, express };

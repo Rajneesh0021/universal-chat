@@ -1,30 +1,36 @@
-// src/components/LoginPage.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const LoginPage = ({ setAuthenticated }) => {
+
+const LoginPage = ({ setAuthenticated}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:9090/api/login', { username, password });
       if (response.data.success) {
+      await  toast(response.data.message);
         setAuthenticated(true);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', username);
-      } else {
-        setError('Invalid credentials');
+      } else{
+        console.log(response.data)
+        toast(response.data.message);
       }
     } catch (err) {
-      setError('Server error');
+      toast(err.response.data.message);
     }
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="container d-flex justify-content-center">
       <div className="card p-5">
         <h3 className="card-title text-center ">Login</h3>
@@ -50,10 +56,10 @@ const LoginPage = ({ setAuthenticated }) => {
             />
           </div>
           <button type="submit" className="btn btn-primary mt-2 btn-block">Login</button>
-          {error && <p className="text-danger text-center mt-3">{error}</p>}
         </form>
       </div>
     </div>
+    </>
   );
 };
 
