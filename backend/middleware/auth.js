@@ -4,7 +4,7 @@ const User = require('../models/User');
 const verifyToken = async (req, res, next) => {
   const token = req.headers['authorization'];
 
-  if (!token || !token.startsWith('Bearer ')) {
+  if (!token ) {
     return res.status(403).json({ message: 'No token provided' });
   }
 
@@ -12,10 +12,10 @@ const verifyToken = async (req, res, next) => {
 
   try {
 
-    const decoded = jwt.verify(tokenValue, process.env.JWT_SECRET);
+    const decoded = jwt.verify(tokenValue, process.env.SECRET_KEY);
 
 
-    const user = await User.findById(decoded.id);
+    const user = await User.findById({_id:decoded.id});
     if (!user) {
       return res.status(401).json({ message: 'User not found' });
     }
