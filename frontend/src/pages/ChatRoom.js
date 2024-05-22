@@ -30,11 +30,9 @@ const ChatRoom = () => {
           },
         });
         console.log(response)
-        if(response.statusText==='OK'){
+        
         setMessages(response.data);
-        }else{
-        toast(response.message)
-      }
+        
       } catch (error) {
         console.log(error)
         toast(error.message);
