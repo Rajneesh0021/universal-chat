@@ -38,7 +38,7 @@ const ChatRoom = () => {
       } catch (error) {
         console.log(error)
         toast(error.message);
-        
+          localStorage.clear()
 
       }
     };
@@ -82,7 +82,7 @@ const ChatRoom = () => {
       } catch (error) {
         toast(error.message)
         console.error('Error posting message:', error);
-        
+        localStorage.clear()
       }
     }
   };
